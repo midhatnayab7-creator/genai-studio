@@ -1,54 +1,61 @@
-# GenAI Studio
+<p align="center">
+  <img src="https://img.shields.io/badge/GenAI-Studio-blueviolet?style=for-the-badge&logo=openai&logoColor=white" alt="GenAI Studio" />
+  <br/>
+  <strong>7-in-1 AI Productivity Suite</strong>
+</p>
 
-A modern, 7-in-1 AI-powered productivity suite built with SvelteKit. Features a sleek dark theme with real-time streaming responses — **no API keys required**.
+<p align="center">
+  <a href="https://genai-studio-pi.vercel.app">
+    <img src="https://img.shields.io/badge/🚀_Live_Demo-genai--studio--pi.vercel.app-00C853?style=for-the-badge" alt="Live Demo" />
+  </a>
+</p>
 
-![SvelteKit](https://img.shields.io/badge/SvelteKit-2.0-FF3E00?logo=svelte&logoColor=white)
-![Svelte](https://img.shields.io/badge/Svelte-5-FF3E00?logo=svelte&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)
-![License](https://img.shields.io/badge/license-MIT-blue)
+<p align="center">
+  <img src="https://img.shields.io/badge/SvelteKit-FF3E00?style=flat-square&logo=svelte&logoColor=white" />
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white" />
+  <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white" />
+  <img src="https://img.shields.io/badge/OpenRouter-AI-blue?style=flat-square" />
+</p>
+
+---
+
+## About
+
+**GenAI Studio** is an all-in-one AI-powered productivity suite that brings together seven essential tools in a single, sleek interface. Built with SvelteKit and deployed on Vercel, it delivers fast, responsive AI experiences right from your browser.
+
+---
 
 ## Features
 
-### 1. AI Chat
-General-purpose conversational AI assistant. Ask about anything — research, writing, math, coding, ideas, and more. Full conversation history with real-time streaming.
+| Tool | Description |
+|------|-------------|
+| **💬 AI Chat** | Have natural conversations with Claude — ask anything, brainstorm, or get advice |
+| **🖼️ Image Generator** | Generate stunning images from text descriptions |
+| **💻 Code Assistant** | Write, debug, and explain code across multiple languages |
+| **✍️ Content Writer** | Generate emails, blog posts, essays, social media posts, resumes & cover letters |
+| **🌐 Translator** | Translate text between any languages instantly |
+| **📝 Summarizer** | Condense long articles and documents into key points |
+| **🔗 URL Reader** | Fetch any webpage and ask AI questions about its content |
 
-### 2. Image Generator
-Generate images from text descriptions using Stable Horde's distributed AI network. Creates 2 images per prompt (512x512) with download support.
-
-### 3. Code Assistant
-Write, debug, explain, and optimize code in any programming language. Includes syntax highlighting with copy-to-clipboard for code blocks.
-
-### 4. Content Writer
-Generate professional content with 6 format options:
-- Email | Blog Post | Essay | Social Media Post | Resume/CV | Cover Letter
-
-### 5. Translator
-Translate text between 15+ languages instantly:
-English, Spanish, French, Arabic, Chinese, German, Japanese, Italian, Portuguese, Russian, Hindi, Korean, Turkish, Dutch, Swedish
-
-### 6. Summarizer
-Paste any long text and get a clear summary with key bullet points and a brief conclusion.
-
-### 7. URL Reader
-Fetch any webpage, extract its content, and ask AI questions about it. Great for analyzing articles, documentation, and research papers.
+---
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | SvelteKit 2 + Svelte 5 |
-| Build Tool | Vite 6 |
-| Markdown | marked + highlight.js |
-| Text AI | Pollinations.ai (free, no auth) |
-| Image AI | Stable Horde API (free, anonymous) |
-| Deployment | Vercel |
+- **Frontend** — [SvelteKit](https://kit.svelte.dev/) + [Svelte 5](https://svelte.dev/) with Runes
+- **Build Tool** — [Vite](https://vitejs.dev/)
+- **AI Backend** — [OpenRouter](https://openrouter.ai/) (Claude, GPT & more)
+- **Image Generation** — Pollinations AI
+- **Markdown Rendering** — [Marked](https://marked.js.org/) + [Highlight.js](https://highlightjs.org/)
+- **Deployment** — [Vercel](https://vercel.com/)
+
+---
 
 ## Getting Started
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) v18 or higher
-- npm (comes with Node.js)
+- Node.js 18+ installed
+- An [OpenRouter](https://openrouter.ai/) API key
 
 ### Installation
 
@@ -60,11 +67,15 @@ cd genai-studio
 # Install dependencies
 npm install
 
-# Start the development server
+# Create environment file
+cp .env.example .env
+# Add your OpenRouter API key to .env
+
+# Start development server
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+The app will be available at `http://localhost:5173`
 
 ### Build for Production
 
@@ -73,58 +84,46 @@ npm run build
 npm run preview
 ```
 
+---
+
+## Deployment
+
+This project is pre-configured for **Vercel** deployment:
+
+1. Push your code to GitHub
+2. Import the repository on [vercel.com/new](https://vercel.com/new)
+3. Deploy — zero configuration needed
+
+---
+
 ## Project Structure
 
 ```
 genai-studio/
 ├── src/
-│   ├── app.html                    # HTML template
 │   ├── lib/
-│   │   └── markdown.js             # Markdown renderer with syntax highlighting
-│   └── routes/
-│       ├── +page.svelte            # Main app (all 7 tools + UI)
-│       └── api/
-│           ├── chat/+server.js     # Text generation API (streaming SSE)
-│           ├── generate-image/+server.js  # Image generation API
-│           └── fetch-url/+server.js      # URL content extractor
-├── static/                         # Static assets
-├── svelte.config.js                # SvelteKit configuration
-├── vite.config.js                  # Vite configuration
-├── vercel.json                     # Vercel deployment config
-├── package.json
-└── .env.example
+│   │   └── markdown.js          # Markdown rendering utilities
+│   ├── routes/
+│   │   ├── api/
+│   │   │   ├── chat/            # AI chat endpoint
+│   │   │   ├── fetch-url/       # URL scraping endpoint
+│   │   │   └── generate-image/  # Image generation endpoint
+│   │   └── +page.svelte         # Main application UI
+├── static/                      # Static assets
+├── svelte.config.js
+├── vite.config.js
+└── vercel.json
 ```
 
-## How It Works
-
-- **Text Generation**: Uses [Pollinations.ai](https://pollinations.ai/) — a free, open-source AI API. Responses stream in real-time via Server-Sent Events (SSE).
-- **Image Generation**: Uses [Stable Horde](https://stablehorde.net/) — a distributed volunteer network running Stable Diffusion. Images take 20–60 seconds on free servers.
-- **URL Reading**: Fetches web pages server-side, strips HTML to extract clean text (capped at 10,000 characters), then uses AI to answer questions about the content.
-
-## Design
-
-- **Theme**: Professional dark navy design with sky-blue and indigo accents
-- **Layout**: Sidebar navigation (248px) with main content area
-- **Responsive**: Sidebar hidden on mobile (< 600px)
-- **Typography**: System font stack with Fira Code for code blocks
-- **Animations**: Blinking cursor, smooth scroll, gradient hover effects
-
-## Deployment
-
-### Vercel (Recommended)
-
-1. Push to GitHub
-2. Import the repo in [Vercel](https://vercel.com)
-3. Deploy — zero configuration needed
-
-### Other Platforms
-
-The app uses `@sveltejs/adapter-auto` which auto-detects the deployment platform. Works with Vercel, Netlify, Cloudflare Pages, and more.
-
-## License
-
-MIT
+---
 
 ## Author
 
-**Midhat** — Built with SvelteKit and free AI APIs
+**Midhat Nayab**
+- GitHub: [@midhatnayab7-creator](https://github.com/midhatnayab7-creator)
+
+---
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
